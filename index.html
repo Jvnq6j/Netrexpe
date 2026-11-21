@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#211044"><meta name="description" content="Netrexpe — conectando pessoas sem fronteiras">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Netrexpe</title>
+<style>
+:root{--bg:#100b20;--panel:#1b1430;--panel2:#251b40;--purple:#8657f5;--blue:#3989ff;--text:#f7f4ff;--muted:#b9afd0;--line:#382b55}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#30205c 0,transparent 35%),var(--bg);color:var(--text);font:16px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:520px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 16px 94px}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 2px}.brand{display:flex;gap:10px;align-items:center;font-size:22px;font-weight:800;letter-spacing:.3px}.logo{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--blue));display:grid;place-items:center;box-shadow:0 8px 25px #7548db55}.logo svg{width:23px}
+.pill{border:1px solid var(--line);background:#ffffff0b;color:var(--muted);border-radius:20px;padding:7px 10px;font-size:12px}
+h1{font-size:27px;margin:10px 0 5px}p{color:var(--muted);line-height:1.45}.card{background:linear-gradient(145deg,#211936,#191329);border:1px solid var(--line);border-radius:20px;padding:16px;margin:14px 0;box-shadow:0 10px 30px #0002}
+.hero{padding:23px 20px;background:linear-gradient(135deg,#39216c,#173c72);border:1px solid #7555bc;border-radius:24px;margin-top:8px}.hero h1{font-size:29px}.hero p{color:#ded4ff;margin-bottom:0}
+.btn{border:0;border-radius:13px;padding:13px 16px;color:white;font-weight:700;background:linear-gradient(100deg,var(--purple),var(--blue));width:100%;box-shadow:0 7px 18px #5e42c344}
+.btn.secondary{background:#ffffff0b;border:1px solid var(--line);box-shadow:none}.field{width:100%;background:#100b20;border:1px solid var(--line);border-radius:12px;padding:13px;color:white;margin:6px 0 12px;outline:none}.field:focus{border-color:var(--purple)}label{font-size:13px;color:var(--muted)}
+.row{display:flex;gap:10px;align-items:center}.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#8a5cf6,#2c9bff);font-weight:800}.post{display:flex;gap:11px}.postbody{flex:1}.postbody strong{display:block}.postbody small{color:var(--muted)}.postmedia{height:150px;border-radius:15px;background:linear-gradient(135deg,#39216c,#175b83);display:grid;place-items:center;margin-top:12px;color:#e8ddff;font-size:34px}
+.actions{display:flex;gap:18px;color:var(--muted);font-size:13px;margin-top:13px}.actions button{border:0;background:none;color:inherit;padding:0}
+nav{position:fixed;bottom:0;left:0;right:0;background:#140e25ed;backdrop-filter:blur(18px);border-top:1px solid var(--line);display:flex;justify-content:center;padding:9px 8px calc(9px + env(safe-area-inset-bottom));z-index:5}
+.navinner{width:min(520px,100%);display:flex;justify-content:space-around}.navbtn{background:none;border:0;color:#9e93b8;display:grid;gap:4px;justify-items:center;font-size:10px;min-width:54px}.navbtn span:first-child{font-size:20px}.navbtn.active{color:#b99aff}
+.view{display:none}.view.active{display:block}.chatline{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.chatline:last-child{border:0}.chatline div:nth-child(2){flex:1}.chatline small{display:block;color:var(--muted);margin-top:3px}.notice{background:#2b2142;border:1px solid #514071;border-radius:12px;padding:11px;color:#d9cfff;font-size:12px;line-height:1.4}
+.lang{background:#241a3b;color:white;border:1px solid var(--line);border-radius:10px;padding:7px}
+.hidden{display:none!important}.muted{color:var(--muted)}.topspace{margin-top:20px}
+</style></head>
+<body>
+<div class="wrap">
+<header><div class="brand"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 9a12 12 0 0 1 16 0M7 12a7 7 0 0 1 10 0m-7 3a3 3 0 0 1 4 0M12 19h.01"/></svg></div>Netrexpe</div><select class="lang" id="language" aria-label="Idioma"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select></header>
+<section id="home" class="view active">
+<div class="hero"><span class="pill" data-i18n="world">CONECTE-SE COM O MUNDO</span><h1 data-i18n="tagline">O mundo mais perto de você.</h1><p data-i18n="subtag">Converse, compartilhe e descubra novas conexões, sem fronteiras.</p></div>
+<div class="row topspace" style="justify-content:space-between"><h2 data-i18n="feed">Feed</h2><span class="pill">Ao vivo</span></div><div id="liveFeed"></div>
+<div class="card demo-sample hidden"><div class="post"><div class="avatar">A</div><div class="postbody"><strong>Alex Morgan</strong><small>@alexm · 🌎</small><p data-i18n="post1">Conhecendo pessoas incríveis pelo mundo! 👋</p><div class="postmedia">🌍</div><div class="actions"><button onclick="like(this)">♡ <span data-i18n="like">Curtir</span></button><span>💬 12</span><span>↗ <span data-i18n="share">Compartilhar</span></span></div></div></div></div>
+<div class="card demo-sample hidden"><div class="post"><div class="avatar">M</div><div class="postbody"><strong>María López</strong><small>@maria.lopez · 🇪🇸</small><p>¡Saludos desde Madrid! ☀️</p><div class="postmedia">🏙️</div><div class="actions"><button onclick="like(this)">♡ <span data-i18n="like">Curtir</span></button><span>💬 8</span><span>↗ <span data-i18n="share">Compartilhar</span></span></div></div></div></div>
+<div class="notice" id="feedStatus">Entre na sua conta para carregar publicações reais.</div>
+</section>
+<section id="messages" class="view"><h1 data-i18n="messages">Mensagens</h1><p data-i18n="messagesSub">Suas conversas aparecerão aqui.</p><div class="card">
+<div class="chatline"><div class="avatar">J</div><div><strong>João Silva</strong><small data-i18n="sample1">Oi! Tudo bem?</small></div><span class="pill">12:40</span></div>
+<div class="chatline"><div class="avatar">L</div><div><strong>Lucía García</strong><small>¡Hola! ¿Cómo estás?</small></div><span class="pill">Ontem</span></div>
+<div class="chatline"><div class="avatar">D</div><div><strong>Daniel Kim</strong><small>Hello from Seoul!</small></div><span class="pill">Seg</span></div>
+</div><div class="notice" data-i18n="chatNote">Conversas ilustrativas. O envio em tempo real será conectado na próxima etapa.</div></section>
+<section id="calls" class="view"><h1 data-i18n="calls">Ligações</h1><p data-i18n="callsSub">Fale cara a cara com quem está longe.</p><div class="card" style="text-align:center;padding:30px 18px"><div style="font-size:48px">📞</div><h2 data-i18n="voiceVideo">Voz e vídeo</h2><p data-i18n="callsInfo">Chamadas internacionais pela internet, quando o serviço estiver conectado.</p><button class="btn" onclick="alert(t('coming'))" data-i18n="startCall">Iniciar chamada</button></div><div class="notice" data-i18n="callNote">Chamadas ainda não estão conectadas. Elas exigem sinalização e infraestrutura de áudio/vídeo.</div></section>
+<section id="publish" class="view"><h1 data-i18n="publish">Criar publicação</h1><p data-i18n="publishSub">Compartilhe uma ideia, foto ou vídeo.</p><div class="card"><label data-i18n="caption">Legenda</label><textarea id="caption" class="field" rows="4" placeholder="O que você quer compartilhar?"></textarea><label>Localização (opcional)</label><input id="postLocation" class="field" placeholder="Cidade, país"><label>Foto ou vídeo (até 20 MB)</label><input id="media" class="field" type="file" accept="image/*,video/*"><div id="preview"></div><button class="btn" id="publishBtn">Publicar</button></div><div class="notice" id="publishNote">Publicações serão salvas na nuvem e aparecerão para usuários autenticados.</div></section>
+<section id="profile" class="view"><h1 data-i18n="profile">Perfil</h1><div class="card" style="text-align:center"><div class="avatar" style="width:76px;height:76px;margin:auto;font-size:25px">N</div><h2 id="profileName">Visitante Netrexpe</h2><p id="profileEmail">Entre ou crie uma conta para configurar seu perfil.</p></div>
+<div class="card" id="authCard"><h3>Entrar ou criar conta</h3><label>Nome (para cadastro)</label><input id="name" class="field" placeholder="Seu nome"><label>E-mail</label><input id="email" class="field" type="email" autocomplete="email" placeholder="voce@email.com"><label>Telefone (opcional por enquanto)</label><input id="phone" class="field" type="tel" autocomplete="tel" placeholder="+55"><label>Senha (mínimo 6 caracteres)</label><input id="password" class="field" type="password" autocomplete="current-password" placeholder="Sua senha"><button class="btn" id="signupBtn">Criar conta com e-mail</button><button class="btn secondary" id="loginBtn" style="margin-top:9px">Entrar com e-mail</button><button class="btn secondary" id="googleBtn" style="margin-top:9px">Continuar com Google</button><p id="authStatus" class="muted" style="font-size:12px">Suas credenciais serão protegidas pelo Firebase Authentication.</p></div><div class="card hidden" id="signedCard"><strong id="signedName">Minha conta</strong><p id="signedEmail" class="muted"></p><button class="btn secondary" id="logoutBtn">Sair da conta</button></div></section>
+</div>
+<nav><div class="navinner">
+<button class="navbtn active" data-go="home"><span>⌂</span><span data-i18n="home">Início</span></button>
+<button class="navbtn" data-go="messages"><span>▤</span><span data-i18n="messages">Mensagens</span></button>
+<button class="navbtn" data-go="calls"><span>☎</span><span data-i18n="calls">Ligações</span></button>
+<button class="navbtn" data-go="publish"><span>＋</span><span data-i18n="publish">Publicar</span></button>
+<button class="navbtn" data-go="profile"><span>◉</span><span data-i18n="profile">Perfil</span></button>
+</div></nav>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query, orderBy, limit, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDza953VIUtHRrasTawP0nldVbJAuwgxj4",
+  authDomain: "netrexpe-4dd86.firebaseapp.com",
+  projectId: "netrexpe-4dd86",
+  storageBucket: "netrexpe-4dd86.firebasestorage.app",
+  messagingSenderId: "492126427479",
+  appId: "1:492126427479:web:0d1e3f3bc31dd211bf8612"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const $ = id => document.getElementById(id);
+let currentUser = null;
+let unsubscribeFeed = null;
+
+function status(message, isError=false) {
+  $("authStatus").textContent = message;
+  $("authStatus").style.color = isError ? "#ff9caa" : "#b9afd0";
+}
+function escapeHTML(value="") {
+  return String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+async function saveUserProfile(user, displayName=null, phone=null) {
+  const userRef = doc(db, "users", user.uid);
+  const snap = await getDoc(userRef);
+  const name = displayName || user.displayName || user.email?.split("@")[0] || "Usuário Netrexpe";
+  await setDoc(userRef, {
+    uid: user.uid, displayName: name, email: user.email || "",
+    phone: phone || (snap.exists() ? snap.data().phone || "" : ""),
+    photoURL: user.photoURL || "", updatedAt: serverTimestamp(),
+    createdAt: snap.exists() ? snap.data().createdAt : serverTimestamp()
+  }, {merge:true});
+}
+function renderUser(user) {
+  currentUser = user;
+  $("authCard").classList.toggle("hidden", !!user);
+  $("signedCard").classList.toggle("hidden", !user);
+  $("profileName").textContent = user ? (user.displayName || "Usuário Netrexpe") : "Visitante Netrexpe";
+  $("profileEmail").textContent = user ? (user.email || "Conta Google") : "Entre ou crie uma conta para configurar seu perfil.";
+  $("signedName").textContent = user?.displayName || "Minha conta";
+  $("signedEmail").textContent = user?.email || "";
+  $("feedStatus").textContent = user ? "Carregando publicações..." : "Entre na sua conta para carregar publicações reais.";
+  if (unsubscribeFeed) { unsubscribeFeed(); unsubscribeFeed = null; }
+  if (user) listenFeed();
+  else $("liveFeed").innerHTML = "";
+}
+$("signupBtn").addEventListener("click", async () => {
+  const name = $("name").value.trim(), email = $("email").value.trim(), password = $("password").value;
+  if (!name || !email || password.length < 6) return status("Informe nome, e-mail e senha com pelo menos 6 caracteres.", true);
+  try {
+    status("Criando sua conta...");
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(result.user, {displayName:name});
+    await saveUserProfile(result.user, name, $("phone").value.trim());
+    status("Conta criada com sucesso!");
+  } catch(e) { status(authError(e), true); }
+});
+$("loginBtn").addEventListener("click", async () => {
+  const email = $("email").value.trim(), password = $("password").value;
+  if (!email || !password) return status("Informe e-mail e senha.", true);
+  try { status("Entrando..."); await signInWithEmailAndPassword(auth,email,password); status("Login realizado!"); }
+  catch(e) { status(authError(e), true); }
+});
+$("googleBtn").addEventListener("click", async () => {
+  try { status("Abrindo login Google..."); await signInWithRedirect(auth,new GoogleAuthProvider()); }
+  catch(e) { status(authError(e), true); }
+});
+$("logoutBtn").addEventListener("click", async () => { await signOut(auth); status("Você saiu da sua conta."); });
+getRedirectResult(auth).catch(e => status(authError(e), true));
+onAuthStateChanged(auth, async user => {
+  renderUser(user);
+  if (user) {
+    try { await saveUserProfile(user); }
+    catch(e) { console.error(e); status("Login concluído, mas não foi possível salvar o perfil. Confira as regras do Firestore.", true); }
+  }
+});
+function authError(e) {
+  const map = {
+    "auth/email-already-in-use":"Este e-mail já possui uma conta.",
+    "auth/invalid-email":"E-mail inválido.",
+    "auth/weak-password":"A senha precisa ter pelo menos 6 caracteres.",
+    "auth/user-not-found":"Conta não encontrada.",
+    "auth/wrong-password":"Senha incorreta.",
+    "auth/invalid-credential":"E-mail ou senha incorretos.",
+    "auth/unauthorized-domain":"Este domínio ainda não está autorizado no Firebase Authentication.",
+    "auth/popup-blocked":"O navegador bloqueou a janela de login."
+  };
+  return map[e.code] || `Não foi possível concluir: ${e.message || e.code || "erro desconhecido"}`;
+}
+function listenFeed() {
+  const q = query(collection(db,"posts"),orderBy("createdAt","desc"),limit(40));
+  unsubscribeFeed = onSnapshot(q, snap => {
+    $("feedStatus").textContent = snap.empty ? "Ainda não há publicações. Seja a primeira pessoa a publicar!" : `${snap.size} publicação(ões) recentes`;
+    $("liveFeed").innerHTML = snap.docs.map(d => {
+      const p=d.data(), name=escapeHTML(p.authorName || "Usuário Netrexpe");
+      const media = p.mediaURL ? (p.mediaType==="video" ? `<video src="${escapeHTML(p.mediaURL)}" controls style="width:100%;max-height:340px;border-radius:14px;margin-top:10px"></video>` : `<img src="${escapeHTML(p.mediaURL)}" alt="Publicação" style="width:100%;max-height:340px;object-fit:cover;border-radius:14px;margin-top:10px">`) : "";
+      return `<article class="card"><div class="post"><div class="avatar">${name.slice(0,1).toUpperCase()}</div><div class="postbody"><strong>${name}</strong><small>${escapeHTML(p.authorEmail || "")}</small><p>${escapeHTML(p.caption || "")}</p>${media}${p.location ? `<small>📍 ${escapeHTML(p.location)}</small>` : ""}</div></div></article>`;
+    }).join("");
+  }, err => { $("feedStatus").textContent = "Erro ao carregar feed: " + err.message; });
+}
+$("publishBtn").addEventListener("click", async () => {
+  if (!currentUser) { $("publishNote").textContent = "Entre na sua conta antes de publicar."; return; }
+  const caption=$("caption").value.trim(), file=$("media").files[0];
+  if (!caption && !file) { $("publishNote").textContent="Adicione uma legenda ou uma foto/vídeo."; return; }
+  if (file && file.size > 20*1024*1024) { $("publishNote").textContent="O arquivo ultrapassa o limite de 20 MB."; return; }
+  const btn=$("publishBtn"); btn.disabled=true; btn.textContent="Enviando...";
+  try {
+    let mediaURL="", mediaType="";
+    if (file) {
+      const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+      const fileRef=ref(storage,`posts/${currentUser.uid}/${Date.now()}_${safeName}`);
+      await uploadBytes(fileRef,file,{contentType:file.type});
+      mediaURL=await getDownloadURL(fileRef);
+      mediaType=file.type.startsWith("video/")?"video":"image";
+    }
+    const locationText=$("postLocation")?.value.trim() || "";
+    await addDoc(collection(db,"posts"),{
+      uid:currentUser.uid, authorName:currentUser.displayName || currentUser.email.split("@")[0],
+      authorEmail:currentUser.email || "", caption, mediaURL, mediaType,
+      location:locationText, createdAt:serverTimestamp()
+    });
+    $("caption").value=""; $("media").value=""; $("preview").innerHTML="";
+    $("publishNote").textContent="Publicação enviada! Ela já aparece no feed.";
+    document.querySelector('[data-go="home"]').click();
+  } catch(e) { $("publishNote").textContent="Falha ao publicar: "+e.message; }
+  finally { btn.disabled=false; btn.textContent="Publicar"; }
+});
+document.getElementById("media").addEventListener("change",e=>{
+  const f=e.target.files[0],p=$("preview"); p.innerHTML="";
+  if(!f)return;
+  const u=URL.createObjectURL(f),el=document.createElement(f.type.startsWith("video")?"video":"img");
+  el.src=u; el.style="max-width:100%;max-height:220px;border-radius:12px";
+  if(el.tagName==="VIDEO")el.controls=true; p.append(el);
+});
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById(b.dataset.go).classList.add("active");
+  document.querySelectorAll(".navbtn").forEach(n=>n.classList.toggle("active",n===b));
+  window.scrollTo(0,0);
+}));
+const translations={
+pt:{world:"CONECTE-SE COM O MUNDO",tagline:"O mundo mais perto de você.",subtag:"Converse, compartilhe e descubra novas conexões, sem fronteiras.",feed:"Feed",messages:"Mensagens",calls:"Ligações",publish:"Publicar",profile:"Perfil",home:"Início"},
+en:{world:"CONNECT WITH THE WORLD",tagline:"The world, closer to you.",subtag:"Chat, share and discover new connections without borders.",feed:"Feed",messages:"Messages",calls:"Calls",publish:"Publish",profile:"Profile",home:"Home"},
+es:{world:"CONECTA CON EL MUNDO",tagline:"El mundo más cerca de ti.",subtag:"Habla, comparte y descubre nuevas conexiones sin fronteras.",feed:"Inicio",messages:"Mensajes",calls:"Llamadas",publish:"Publicar",profile:"Perfil",home:"Inicio"}
+};
+document.getElementById("language").addEventListener("change",e=>{
+ const l=e.target.value; document.documentElement.lang=({pt:"pt-BR",en:"en",es:"es"})[l];
+ document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(translations[l][k])el.textContent=translations[l][k]});
+});
+if("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script></body></html>

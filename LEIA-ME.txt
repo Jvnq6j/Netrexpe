@@ -1,0 +1,22 @@
+NETREXPE — protótipo inicial v1.0
+
+O QUE É
+Protótipo visual mobile-first, com navegação, troca de idioma (PT/EN/ES),
+prévia de feed, telas de mensagens e chamadas, criação de post local e perfil de demonstração.
+
+IMPORTANTE
+Este protótipo NÃO tem backend. Não cria contas reais, não autentica com Google,
+não envia mensagens/publicações a outros usuários e não faz chamadas.
+Não digite senhas reais. A tela de perfil só valida os campos localmente e não salva senha.
+
+COMO TESTAR PELO ANDROID
+1. Extraia o ZIP.
+2. Hospede os arquivos em um serviço de hospedagem estática HTTPS (por exemplo, GitHub Pages).
+3. Abra o endereço HTTPS no Chrome Android.
+4. Menu ⋮ > "Adicionar à tela inicial" ou "Instalar app", se disponível.
+
+PRÓXIMA ETAPA PARA PRODUÇÃO
+Configurar Firebase Authentication (e-mail/senha, Google e verificação de telefone),
+Firestore com regras de segurança, Storage para mídia, FCM para notificações,
+e WebRTC com servidor de sinalização/STUN/TURN para chamadas.
+Nunca coloque chaves privadas ou credenciais administrativas no código do app.

@@ -1,0 +1,16 @@
+{
+  "name": "Netrexpe",
+  "short_name": "Netrexpe",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#100b20",
+  "theme_color": "#211044",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
